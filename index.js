@@ -17,8 +17,10 @@ app.get("/", (req, res) => {
 app.get('/extract-data', async (req, res) => {
     try {
         // Inicializa o navegador Puppeteer
-        const browser = await puppeteer.launch({ headless: true });
-        const page = await browser.newPage();
+        const browser = await puppeteer.launch({ headless: true,      executablePath: '/usr/bin/google-chrome',
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], });
+              const page = await browser.newPage();
+      
 
         // Acesse o site desejado
         await page.goto('https://www.worldometers.info/br/', { waitUntil: 'domcontentloaded' });
