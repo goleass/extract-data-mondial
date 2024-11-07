@@ -1,0 +1,38 @@
+# Dependências do Node
+/node_modules
+/.pnp
+.pnp.js
+
+# Diretórios de build
+/dist
+/build
+
+# Arquivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+/coverage
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Ambiente local
+.env
+.env.local
+.env.*.local
+
+# Configuração do editor de texto
+.idea
+.vscode
+*.sublime-workspace
+
+# Cache do TypeScript
+*.tsbuildinfo
+
+# Logs e arquivos temporários
+/logs
+*.log
+/tmp
