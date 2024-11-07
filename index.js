@@ -19,7 +19,7 @@ app.get('/extract-data', async (req, res) => {
         // Inicializa o navegador Puppeteer
         const browser = await puppeteer.launch({ 
             headless: true,      
-            // executablePath: '/usr/bin/google-chrome',
+            executablePath: '/usr/bin/google-chrome',
             args: ['--no-sandbox', '--disable-setuid-sandbox'], });
               const page = await browser.newPage();
       
