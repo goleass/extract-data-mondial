@@ -17,7 +17,9 @@ app.get("/", (req, res) => {
 app.get('/extract-data', async (req, res) => {
     try {
         // Inicializa o navegador Puppeteer
-        const browser = await puppeteer.launch({ headless: true,      executablePath: '/usr/bin/google-chrome',
+        const browser = await puppeteer.launch({ 
+            headless: true,      
+            // executablePath: '/usr/bin/google-chrome',
             args: ['--no-sandbox', '--disable-setuid-sandbox'], });
               const page = await browser.newPage();
       
@@ -37,14 +39,20 @@ app.get('/extract-data', async (req, res) => {
         // Extrai o texto do elemento
         const data = await page.evaluate(() => {
             const element = document.querySelector('.rts-counter[rel="dth1s_this_year"]');
-            return element ? element.innerText : null;
+            return {dados: element ? element.innerText : null, element};
+        });
+
+        // Extrai o texto do elemento
+        const data2 = await page.evaluate(() => {
+            const element = document.querySelector('.rts-counter[rel="dth1s_today"]');
+            return {dados: element ? element.innerText : null, element};
         });
 
         // Fecha o navegador
         await browser.close();
 
         // Retorna o dado extraído
-        res.json({ mortesAno: data, mortesHoje: data });
+        res.json({ mortesAno: data.dados, mortesHoje: data2.dados });
     } catch (error) {
         console.error('Erro ao extrair os dados:', error);
         res.status(500).json({ error: 'Erro ao extrair os dados' });
