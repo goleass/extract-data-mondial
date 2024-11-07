@@ -32,8 +32,8 @@ app.get("/extract-data", async (req, res) => {
 
     try {
         const result = await pool.query('SELECT * FROM dadosglobais');
-        
-        res.json({ mortesAno: result.rows[0].mortes_ano_atual, mortesHoje: result.rows[0].mortes_ano_atual });
+
+        res.json({ mortesAno: result.rows[0].mortes_ano_atual, mortesHoje: result.rows[0].mortes_hoje });
     } catch (error) {
         
     }
