@@ -32,9 +32,7 @@ app.get("/extract-data", async (req, res) => {
 
     try {
         const result = await pool.query('SELECT * FROM dadosglobais');
-
-        res.json(result.rows[0]);
-
+        
         res.json({ mortesAno: result.rows[0].mortes_ano_atual, mortesHoje: result.rows[0].mortes_ano_atual });
     } catch (error) {
         
