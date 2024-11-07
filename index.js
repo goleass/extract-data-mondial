@@ -1,6 +1,11 @@
 const express = require("express");
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 const cors = require('cors');
+// const dotenv = require('dotenv');
+const chromium = require("@sparticuz/chromium");
+const puppeteer = require("puppeteer-core");
+
+// dotenv.config()
 
 const PORT = 3000;
 const app = express();
@@ -14,7 +19,14 @@ app.get("/", (req, res) => {
 app.get('/extract-data', async (req, res) => {
     try {
         // Inicializa o navegador Puppeteer
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+            ignoreHTTPSErrors: true,
+          });
+
         const page = await browser.newPage();
 
         // Acesse o site desejado
